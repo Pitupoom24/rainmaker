@@ -3,7 +3,7 @@ import Navbar from '../components/navbar';
 import { PlusIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 import { ScaleIcon } from '@heroicons/react/24/solid';
 
-function Home() {
+const Home: React.FC = () => {
   return (
     <div>
         <Navbar />

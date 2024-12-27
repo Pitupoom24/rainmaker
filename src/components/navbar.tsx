@@ -1,8 +1,7 @@
 'use client'
 
-import React from 'react';
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Dialog,
   DialogPanel,
@@ -13,7 +12,7 @@ import {
   PopoverButton,
   PopoverGroup,
   PopoverPanel,
-} from '@headlessui/react'
+} from '@headlessui/react';
 import {
   ArrowPathIcon,
   Bars3Icon,
@@ -22,32 +21,47 @@ import {
   FingerPrintIcon,
   SquaresPlusIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import { ScaleIcon } from '@heroicons/react/24/solid'
+} from '@heroicons/react/24/outline';
+import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
+import { ScaleIcon } from '@heroicons/react/24/solid';
 
-const products = [
+// Define types for product and call to action items
+interface Product {
+  name: string;
+  description: string;
+  href: string;
+  icon: React.ElementType;
+}
+
+interface CallToAction {
+  name: string;
+  href: string;
+  icon: React.ElementType;
+}
+
+const products: Product[] = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
   { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
   { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
   { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
   { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
-]
-const callsToAction = [
+];
+
+const callsToAction: CallToAction[] = [
   { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
   { name: 'Contact sales', href: '#', icon: PhoneIcon },
-]
+];
 
-export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+const Navbar: React.FC = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false); // Set state type explicitly
 
   return (
     <header className="bg-white">
       <nav aria-label="Global" className="mr-auto flex items-center justify-between px-3 pt-4 pb-4 border-b-[1px] border-gray-200 lg:px-8">
         <div className="flex lg:flex-1">
-          <Link to="/" className='flex items-center'>
-              <ScaleIcon className="h-[1.125rem] w-[1.125rem] mr-2" />
-              <div className="font-semibold text-lg leading-[1.125rem] text-gray-900">rainmaker</div>
+          <Link to="/" className="flex items-center">
+            <ScaleIcon className="h-[1.125rem] w-[1.125rem] mr-2" />
+            <div className="font-semibold text-lg leading-[1.125rem] text-gray-900">rainmaker</div>
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -60,7 +74,7 @@ export default function Navbar() {
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div>
-        
+
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
@@ -123,7 +137,7 @@ export default function Navbar() {
           </a>
         </div>
       </nav>
-      
+
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div className="fixed inset-0 z-10" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -198,5 +212,7 @@ export default function Navbar() {
         </DialogPanel>
       </Dialog>
     </header>
-  )
-}
+  );
+};
+
+export default Navbar;
